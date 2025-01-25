@@ -18,7 +18,7 @@ public class Main {
         Options options = new Options();
         logger.info("** Starting Maze Runner");
 
-        Option iFlag = new Option("i", true, "Maze File to be used");
+        Option iFlag = new Option("i", true, "Maze File to be used");  //reads i-flag
         options.addOption(iFlag);
 
         try {
