@@ -16,6 +16,22 @@ public class MazeSolver{
         return 0;
     }
 
+    public String findPath(Maze maze){
+        
+        char[][] mazeArray = maze.getMazeArray();
+        int entry = entryPoint(mazeArray);
+        int y = 0;
+        
+
+        for ( int x = entry ; x < maze.getWidth(); x++){
+            if(maze.wallCheck(x,y) == true){
+                compass.move(Direction.FORWARD);
+            }else{
+                break;
+            }
+        }
+        return compass.getPath();
+        }
 
 
 
