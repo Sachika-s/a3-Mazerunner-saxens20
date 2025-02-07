@@ -17,12 +17,15 @@ public class Maze{
     private BufferedReader reader;
     private BufferedReader reader2;
     private String line;
-
+//construtor of maze 
     public Maze(BufferedReader reader, BufferedReader reader2) {
         this.reader = reader;
         this.reader2 = reader2;
     }
-
+/*function - convert maze file into array, eaier for navigating
+ * parameter - nothing
+ * 
+ */
     public char[][] mazetoArray() {
         maze = new char[length][width];
         int count = 0;
@@ -44,7 +47,10 @@ public class Maze{
         }
         return maze;
     }
-
+/*function - getther method
+ * parameter - 
+ * 
+ */
     public void sizeArray() {
         try{
             while ((line = reader.readLine()) != null) {
@@ -61,7 +67,10 @@ public class Maze{
 
 
 
-    
+   /*ALL 4 functions below - getter methods 
+ * parameter - NA
+ * 
+ */ 
    
     public int getWidth() {
         return width;

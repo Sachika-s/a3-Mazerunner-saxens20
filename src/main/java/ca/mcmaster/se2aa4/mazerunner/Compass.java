@@ -2,7 +2,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 
 public class Compass {
 
-    
+   //created enum for directions  
     public enum Direction {
         UP, DOWN, LEFT, RIGHT
     }
@@ -15,12 +15,15 @@ public class Compass {
     private int col;
 
 
-
+//constructor class , parameters are compass, maze,width, length
     public Compass(Direction compass, char[][] maze, int width, int len) {
         this.compass = compass;
 
     }
-
+/*function - direciton responsible of setting r and c values
+ * parameter - nothing 
+ * 
+ */
     public void Direction() {
         switch (compass) {
             case UP:
@@ -42,12 +45,18 @@ public class Compass {
         }
     }
         
-
+/*function - getter method
+ * parameter - nothing
+ * 
+ */
     public Direction getCompass() {
         return compass;
     }
 
-
+/*function - update current direction based on move
+ * parameter - move 
+ * 
+ */
     public void currentDirection(String move) {
         if (move.contains("R")) {
             switch (compass) {
@@ -65,12 +74,18 @@ public class Compass {
             }
         }
     }
-
+/*function - getter methods 
+ * parameter - nothing
+ * 
+ */
     public int getRow() {
         return row;
     }
 
-
+/*function - getter methods 
+ * parameter - nothings 
+ * 
+ */
     public int getCol() {
         return col;
     }

@@ -11,7 +11,7 @@ public class MazeSolver {
     private int r, c;
     private int entry, exit;  
     private int[] pos;
-
+//constructor
     public MazeSolver(char[][] maze, int width, int length, int entry, int exit, String direction) {
         this.maze = maze;
         this.direction = Compass.Direction.valueOf(direction.toUpperCase());
@@ -22,7 +22,10 @@ public class MazeSolver {
         this.width = width;
         this.length = length;
     }
-
+/*function - responsible to navigate the maze 
+ * parameter - 
+ * 
+ */
     public String findPath() {
         StringBuffer path = new StringBuffer();
         travel = new Compass(direction, maze, width, length);
@@ -53,7 +56,10 @@ public class MazeSolver {
         return path.toString();
     }
 
-
+/*function - method to convert factorized path to canocnial
+ * parameter - path
+ * 
+ */
     public static String factorToCan(String path) {
         StringBuilder expandedP = new StringBuilder();
         int i = 0;
@@ -81,7 +87,10 @@ public class MazeSolver {
         return expandedP.toString();
     }
     
-
+/*function - to take canoncial form and facotirze it 
+ * parameter - path
+ * 
+ */
     public static String canToFactor(String path) {
 
 
@@ -110,7 +119,10 @@ public class MazeSolver {
 
         return factorized.toString();
 }
-
+/*function - methods that call the 2 functions from above
+ * parameter - NA
+ * 
+ */
 public String FactorizedPath() {
     return canToFactor(findPath()); 
 }
