@@ -1,36 +1,79 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-public class Compass{
-    private final StringBuilder path;
+public class Compass {
 
     
-/**
- * Constructor of the compass class
- * no parameters needed 
-**/
-    public Compass(){
-        path = new StringBuilder();
+    public enum Direction {
+        UP, DOWN, LEFT, RIGHT
     }
 
 
-/**
- * Function - converts the directions into F,R or L. Easier for factorized and canonical representation
- * Parameter - direction class needed 
-**/
-    public void move(Direction direction) {
-        switch (direction) {
-            case FORWARD -> path.append("F");
-            case RIGHT -> path.append("R");
-            case LEFT -> path.append("L");
+
+    private Direction compass;
+
+    private int row;
+    private int col;
+
+
+
+    public Compass(Direction compass, char[][] maze, int width, int len) {
+        this.compass = compass;
+
+    }
+
+    public void Direction() {
+        switch (compass) {
+            case UP:
+                row = -1;
+                col = 0;
+                break;
+            case DOWN:
+                row = 1;
+                col = 0;
+                break;
+            case LEFT:
+                row = 0;
+                col = -1;
+                break;
+            case RIGHT:
+                row = 0;
+                col = 1;
+                break;
         }
     }
-/**
- * Getter method, gets path and converts to string
- * no parameters needed 
-**/
-    public String getPath() {
-        return path.toString();
+        
+
+    public Direction getCompass() {
+        return compass;
     }
 
 
+    public void currentDirection(String move) {
+        if (move.contains("R")) {
+            switch (compass) {
+                case UP -> compass = Direction.RIGHT;
+                case RIGHT -> compass = Direction.DOWN;
+                case DOWN -> compass = Direction.LEFT;
+                case LEFT -> compass = Direction.UP;
+            }
+        } else if (move.contains("L")) {
+            switch (compass) {
+                case UP -> compass = Direction.LEFT;
+                case LEFT -> compass = Direction.DOWN;
+                case DOWN -> compass = Direction.RIGHT;
+                case RIGHT -> compass = Direction.UP;
+            }
+        }
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+
+    public int getCol() {
+        return col;
+    }
 }
+
+
