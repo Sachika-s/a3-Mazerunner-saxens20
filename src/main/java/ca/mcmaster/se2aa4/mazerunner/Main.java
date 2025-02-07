@@ -1,47 +1,90 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.apache.commons.cli.*;
-
 
 public class Main {
 
-    private static final Logger logger = LogManager.getLogger();
-
-
     public static void main(String[] args) {
+    
         Options options = new Options();
-        logger.info("** Starting Maze Runner");
 
-        Option iFlag = new Option("i", true, "Maze File to be used");  //reads i-flag
+      
+        Option iFlag = new Option("i", true, "Maze File to be used");
         options.addOption(iFlag);
 
+        Option pFlag = new Option("p", true, "verify path used");
+        options.addOption(pFlag);
+
+        CommandLineParser parser = new DefaultParser();
+
         try {
-            CommandLineParser parser = new DefaultParser();
-            CommandLine cmd = parser.parse(options,args);
-            String fileFlag = cmd.getOptionValue("i");
+           
+            CommandLine cmd = parser.parse(options, args);
+
+            if (!cmd.hasOption("i")) {
+                System.err.println("Missing argument '-i' before inputting a maze file");
+                System.exit(1);
+            }
+
+            String inputFile = cmd.getOptionValue("i");
+
+    
+
+            System.out.println("**** Reading the maze from file " + inputFile);
+            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+            String line;
+
+        
+            while ((line = reader.readLine()) != null) {
+    
+            }
+
             
-            logger.info("**** Reading the maze from file " + fileFlag);
-            Maze maze = new Maze(fileFlag);
+            BufferedReader reader1 = new BufferedReader(new FileReader(inputFile));
+            BufferedReader reader2 = new BufferedReader(new FileReader(inputFile));
+        
+            Maze maze = new Maze(reader1, reader2);
+            maze.sizeArray();
+            char[][] mazeArr = maze.mazetoArray();
+            int width = maze.getWidth();
+            int length = maze.getLength();
+            int entry = maze.getEntry();
+            int exit = maze.getExit();
+
+            String givenPath = null;
             
-            logger.info("**** Computing path");
+        
+            if (cmd.hasOption("p")) {
+                givenPath = cmd.getOptionValue("p");
+            }
 
-            MazeSolver solution = new MazeSolver();
-            String answer = solution.findPath(maze);
+           
+            
+            if (givenPath == null) {
+                String direction = "RIGHT";
 
-            logger.info("Canonical Path " + answer);
+                System.out.println("**** Computing path");
+                MazeSolver pathSolver = new MazeSolver(mazeArr, width, length, entry, exit, direction);
+                String path = pathSolver.FactorizedPath();
+                System.out.println(path);
+            }
+           
+          
+            else {
+                String direction = "RIGHT";
+                ValidateRoute check = new ValidateRoute(givenPath, mazeArr, width, length, entry, exit, direction);
+                System.out.println(check.checkPath());
+            }
 
-        } catch(Exception e) {
-            logger.error("/!\\ An error has occured /!\\");
-            logger.info("PATH NOT COMPUTED");
+        } catch (Exception e) {
+            System.err.println("/!\\ An error has occurred /!\\");
+            //e.printStackTrace();
         }
 
-        logger.info("** End of MazeRunner");
+
+        System.out.println("** End of MazeRunner");
     }
 }
 
