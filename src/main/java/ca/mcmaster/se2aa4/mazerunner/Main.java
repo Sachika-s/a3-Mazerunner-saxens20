@@ -66,7 +66,7 @@ public class Main {
                 String direction = "RIGHT";
 
                 System.out.println("**** Computing path");
-                MazeSolver pathSolver = new MazeSolver(mazeArr, width, length, entry, exit, direction);
+                MazeSolverTemplate pathSolver = new RightHandSolver(mazeArr, width, length, entry, exit, direction);
                 String path = pathSolver.FactorizedPath();
                 System.out.println(path);
             }

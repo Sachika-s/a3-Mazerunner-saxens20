@@ -34,7 +34,7 @@ public class ValidateRoute {
     public String getInput() {
         String verifyPath;
         if (Character.isDigit(input.charAt(0))) {
-            verifyPath = MazeSolver.factorToCan(input);
+            verifyPath = MazeSolverTemplate.factorToCan(input);
         }
         else {
             verifyPath = input;
