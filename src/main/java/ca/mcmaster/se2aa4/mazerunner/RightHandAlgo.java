@@ -1,13 +1,22 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-
 public class RightHandAlgo {
+    private int width, length;
+    private ForwardCommand forwardCommand;
+    private TurnRightCommand turnRightCommand;
+    private TurnLeftCommand turnLeftCommand;
 
     private char[][] maze;
 //CONSTRUCTOR 
 
     public RightHandAlgo(char[][] maze ) {
         this.maze = maze;
+        this.width = maze[0].length;
+        this.length = maze.length;
+        this.forwardCommand = new ForwardCommand();
+        this.turnRightCommand = new TurnRightCommand();
+        this.turnLeftCommand = new TurnLeftCommand();
+    
     }
 /*function - checks for wall
  * parameter - x and y coordinates 
@@ -37,24 +46,29 @@ public class RightHandAlgo {
  * 
  */
     public String Play(Compass.Direction direction, int currentY, int currentX, int r, int c) {
-
+        int[] position = new int[]{currentY, currentX};
         if (direction == Compass.Direction.RIGHT) {
            if (checkWall(currentY+1, currentX)) {
                 if (checkEmpty(currentY+r,currentX+c)) {
-                    return "F";
+                    return forwardCommand.execute(position, direction, r, c, width, length);
+                    
                 }
                 else {
-                    return "L";
+                    return turnLeftCommand.execute(position, direction, r, c, width, length);
                 }
             }
             else {
                 if (checkEmpty(currentY + c, currentX + r)) {
                     currentY += r;
                     currentX += c;
-                    return "RF";
+                    //return "RF";
+                    String right = turnRightCommand.execute(position, direction, r, c, width, length);
+                    String forward = forwardCommand.execute(position, direction, r, c, width, length);
+                    return right + forward;
                 }
                 else {
-                    return "R";
+                    //return "R";
+                    return turnRightCommand.execute(position, direction, r, c, width, length);
                 }
             }
         }
@@ -63,20 +77,26 @@ public class RightHandAlgo {
                 if (checkEmpty(currentY + r , currentX+c )) {
                     currentY += r;
                     currentX += c;
-                    return "F";
+                    return forwardCommand.execute(position, direction, r, c, width, length);
+                  // return "F";
                 }
                 else {
-                    return "L";
+                    return turnLeftCommand.execute(position, direction, r, c, width, length);
+                   // return "L";
                 }
             }
             else {
                 if (checkEmpty(currentY+c ,currentX+r)) {
                     currentY += r;
                     currentX += c;
-                    return "RF";
+                    String right = turnRightCommand.execute(position, direction, r, c, width, length);
+                    String forward = forwardCommand.execute(position, direction, r, c, width, length);
+                    return right + forward;
+                   // return "RF";
                 }
                 else {
-                    return "R";
+                    return turnRightCommand.execute(position, direction, r, c, width, length);
+                    //return "R";
                 }
                
             }
@@ -86,20 +106,26 @@ public class RightHandAlgo {
                 if (checkEmpty(currentY+r , currentX+c)) {
                     currentY += r;
                     currentX += c;
-                    return "F";
+                    return forwardCommand.execute(position, direction, r, c, width, length);
+                    //return "F";
                 }
                 else {
-                    return "L";
+                    return turnLeftCommand.execute(position, direction, r, c, width, length);
+                    //return "L";
                 }
             }
             else {
                 if (checkEmpty(currentY-c,currentX-r)) {
                     currentY += r;
                     currentX += c;
-                    return "RF";
+                    String right = turnRightCommand.execute(position, direction, r, c, width, length);
+                    String forward = forwardCommand.execute(position, direction, r, c, width, length);
+                    return right + forward;
+                    //return "RF";
                 }
                     else {
-                  return "R";
+                    return turnRightCommand.execute(position, direction, r, c, width, length);
+                  //return "R";
                 }
             }
         }
@@ -108,20 +134,27 @@ public class RightHandAlgo {
                 if (checkEmpty(currentY+r , currentX+c )) {
                     currentY += r;
                     currentX += c;
-                    return "F";
+                    return forwardCommand.execute(position, direction, r, c, width, length);
+                    //return "F";
                 }
                 else {
-                    return "L";
+                    return turnLeftCommand.execute(position, direction, r, c, width, length);
+                   // return "L";
                 }
             }
             else {
                 if (checkEmpty(currentY-c,currentX-r)) {
                     currentY += r;
                     currentX += c;
-                    return "RF";
+                    String right = turnRightCommand.execute(position, direction, r, c, width, length);
+                    String forward = forwardCommand.execute(position, direction, r, c, width, length);
+                    return right + forward;
+                    //return "RF";
+                    //return "RF";
                 }
                 else {
-                    return "R";
+                    return turnRightCommand.execute(position, direction, r, c, width, length);
+                    //return "R";
                 }
             }
         }
