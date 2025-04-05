@@ -1,9 +1,10 @@
 package ca.mcmaster.se2aa4.mazerunner;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
+//purpose - stores general maze information such as size, width, length , entry and exit points.
+//Also converts maze file to an array 
 public class Maze{
     private char[][] maze;
 

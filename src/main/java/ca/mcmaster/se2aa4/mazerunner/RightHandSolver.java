@@ -1,5 +1,5 @@
 package ca.mcmaster.se2aa4.mazerunner;
-
+//implement the template design pattern 
 
 public class RightHandSolver extends MazeSolverTemplate {
     private RightHandAlgo algo;

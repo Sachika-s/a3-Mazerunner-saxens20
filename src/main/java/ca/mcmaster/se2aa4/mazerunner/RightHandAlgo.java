@@ -5,8 +5,9 @@ public class RightHandAlgo {
     private ForwardCommand forwardCommand;
     private TurnRightCommand turnRightCommand;
     private TurnLeftCommand turnLeftCommand;
-
     private char[][] maze;
+
+
 //CONSTRUCTOR 
 
     public RightHandAlgo(char[][] maze ) {

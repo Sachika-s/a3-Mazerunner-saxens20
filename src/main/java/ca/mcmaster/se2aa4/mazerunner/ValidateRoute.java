@@ -1,5 +1,8 @@
 package ca.mcmaster.se2aa4.mazerunner;
-
+/*
+ * Purpsoe - class checks for the - p flag 
+ * methods - constructor , getInput, CheckPath
+ */
 public class ValidateRoute {
     private String input;
 
@@ -16,7 +19,9 @@ public class ValidateRoute {
 
     private String direction;
     private Compass travel;
-   
+   /*
+    * constructor
+    */
     public ValidateRoute(String input, char[][] maze, int width, int length, int entry, int exit, String direction) {
         this.width = width;
         this.entry = entry;
@@ -30,6 +35,10 @@ public class ValidateRoute {
 
     }
 
+    /*
+     * get input from user. 
+     * returns - path in string format 
+     */
  
     public String getInput() {
         String verifyPath;
@@ -43,7 +52,11 @@ public class ValidateRoute {
         return verifyPath;
     }
 
-  
+   /*
+     *verfiy input is valid solution to exit path 
+     * returns - string "Valid Path" is path given is correct. "Path inputted is incorrect" is path given is incorrect. 
+     * "Path inputted is incorrect" - if path input is incorrect 
+     */
     public String checkPath() {
         travel = new Compass(Compass.Direction.valueOf(direction), maze, width, length);
         travel.Direction();
