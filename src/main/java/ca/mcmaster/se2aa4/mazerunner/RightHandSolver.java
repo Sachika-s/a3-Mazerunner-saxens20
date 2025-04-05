@@ -14,4 +14,3 @@ public class RightHandSolver extends MazeSolverTemplate {
         return algo.Play(direction, pos[0], pos[1], r, c);
     }
 }
-

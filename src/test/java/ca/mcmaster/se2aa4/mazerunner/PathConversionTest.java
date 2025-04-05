@@ -1,4 +1,4 @@
-/*package ca.mcmaster.se2aa4.mazerunner;
+package ca.mcmaster.se2aa4.mazerunner;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +9,7 @@ class MazeSolverTest {
     void testFactorizedToCanonicalConversion() {
         String factForm = "4F3R2F";
         String expected = "FFFFRRRFF";
-        String output = MazeSolver.factorToCan(factForm);
+        String output = MazeSolverTemplate.factorToCan(factForm);
         assertEquals(expected, output );
     }
 
@@ -17,7 +17,7 @@ class MazeSolverTest {
     void testCanonicalToFactorizedConversion() {
         String canForm = "FFFFRRRFF";
         String expected = "4F3R2F";
-        String output = MazeSolver.canToFactor(canForm);
+        String output = MazeSolverTemplate.canToFactor(canForm);
         assertEquals(expected, output);
     }
 
@@ -25,4 +25,3 @@ class MazeSolverTest {
 
   
 }
-*/
