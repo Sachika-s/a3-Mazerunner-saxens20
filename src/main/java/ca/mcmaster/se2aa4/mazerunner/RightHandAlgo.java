@@ -8,7 +8,10 @@ public class RightHandAlgo {
     private char[][] maze;
 
 
-//CONSTRUCTOR 
+/*function - constructor 
+ * parameter - char maze 
+ * 
+ */
 
     public RightHandAlgo(char[][] maze ) {
         this.maze = maze;
